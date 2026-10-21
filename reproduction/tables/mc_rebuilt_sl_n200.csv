@@ -1,0 +1,17 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Johnson SL,200,Metalog,4,100.0,1000,0.0,0.0243
+Johnson SL,200,Metalog,7,96.1,961,2.3,0.0184
+Johnson SL,200,Metalog,10,69.4,694,47.7,0.0145
+Johnson SL,200,Metalog,13,37.6,376,87.8,0.0122
+Johnson SL,200,QFlex-U,4,100.0,1000,0.0,0.0241
+Johnson SL,200,QFlex-U,7,71.0,710,8.3,0.0189
+Johnson SL,200,QFlex-U,10,43.4,434,61.1,0.0151
+Johnson SL,200,QFlex-U,13,28.4,284,92.3,0.0122
+Johnson SL,200,QFlex-TA+,4,100.0,1000,0.0,0.0241
+Johnson SL,200,QFlex-TA+,7,100.0,1000,1.9,0.0201
+Johnson SL,200,QFlex-TA+,10,100.0,1000,13.6,0.0183
+Johnson SL,200,QFlex-TA+,13,100.0,1000,38.3,0.017
+Johnson SL,200,QFlex-A+,4,100.0,1000,0.0,0.0241
+Johnson SL,200,QFlex-A+,7,100.0,1000,1.9,0.0201
+Johnson SL,200,QFlex-A+,10,100.0,1000,3.3,0.0191
+Johnson SL,200,QFlex-A+,13,100.0,1000,4.2,0.0184

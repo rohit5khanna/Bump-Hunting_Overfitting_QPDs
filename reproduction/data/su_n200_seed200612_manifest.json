@@ -1,0 +1,38 @@
+{
+  "section": "Bootstrap Diagnostics of Structural Stability (paper Table 4, Figures 4-7)",
+  "dist": "johnson_su",
+  "sample_size": 200,
+  "seed": 200612,
+  "seed_formula": "seed = 42 + sample_size*1000 + replication  ->  replication 570",
+  "generator": "jpse.JohnsonSU(eta=0, kappa=1, c=0.5, d=1.2).rvs(size=200, random_state=200612)",
+  "generator_note": "jpse uses legacy np.random.seed + inverse-CDF. scipy.stats.johnsonsu.rvs with default_rng(200612) gives a DIFFERENT sample (range [-4.8695,5.0564] vs [-6.3845,7.0534]); table4_hartigan_real.py used that scipy path, which is why its Hartigan rate (4.00%) does not match the artifacts (1.30%).",
+  "bootstrap_scheme": "rng = np.random.default_rng(seed*10_000 + b); x_boot = rng.choice(x_orig, size=200, replace=True)",
+  "n_bootstrap": 1000,
+  "source_artifact": "/sessions/rcw-01mbzmd8ytrm1beezxmaztjh/mnt/Backup Plus/OD Results/MC_Bootstrap/checkpoints/su_n200_seed200612_samples.parquet",
+  "stored_hartigan_pval_of_ORIGINAL_sample": 0.9280893474745379,
+  "stored_silverman_pval_of_ORIGINAL_sample": 0.1457286432160804,
+  "stored_pvals_note": "These are for the ORIGINAL realization only. bootstrap_cloud.py copied them onto all 32000 rows of the per-seed checkpoint; it never tested the resamples. Table 4 rejection rates cannot be derived from the checkpoints.",
+  "x_orig": {
+    "n": 200,
+    "min": -6.384492282948589,
+    "max": 7.053436087591065,
+    "mean": -0.4379862111253643,
+    "sha256_of_csv": "7099c8b2f6d85f2a045c711a5cf63354152e016dbea28120c7f81844c8edc584"
+  },
+  "regeneration_check": {
+    "max_abs_diff_vs_jpse": 2.220446049250313e-15,
+    "bit_exact": false,
+    "note": "differs at machine epsilon only; the pinned CSV is authoritative"
+  },
+  "x_orig_unsorted": {
+    "file": "su_n200_seed200612_x_orig_unsorted.csv",
+    "sha256_of_csv": "561339e3aa24a006589b5dab07f080add115040781cbadc05f1dc62689c4083c",
+    "why": "bootstrap_cloud.py line 271 draws rng.choice(x_orig, ...) from the UNSORTED array. Sorting destroys that order, so the sorted artifact alone cannot reproduce the resamples. This file is a jpse regeneration; sort() of it matches the stored artifact to 2.2e-15."
+  },
+  "w1_in_this_section": {
+    "formula": "mean(|Q_fit(P_GRID) - EQF_original(P_GRID)|) * 0.98",
+    "P_GRID": "linspace(0.01, 0.99, 1000)",
+    "reference": "the ORIGINAL realization EQF (Weibull positions), NOT the resample EQF",
+    "normalized": "w1_normalized = w1_distance / (P90-P10 of the ORIGINAL sample)"
+  }
+}

@@ -1,0 +1,17 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Johnson SB,200,Metalog,4,100.0,1000,0.0,0.0152
+Johnson SB,200,Metalog,7,96.1,961,18.6,0.0117
+Johnson SB,200,Metalog,10,69.4,694,73.1,0.0096
+Johnson SB,200,Metalog,13,37.6,376,97.6,0.0085
+Johnson SB,200,QFlex-U,4,100.0,1000,0.0,0.0154
+Johnson SB,200,QFlex-U,7,71.0,710,10.1,0.0123
+Johnson SB,200,QFlex-U,10,43.4,434,78.1,0.0103
+Johnson SB,200,QFlex-U,13,28.4,284,97.2,0.0089
+Johnson SB,200,QFlex-TA+,4,100.0,1000,0.0,0.0154
+Johnson SB,200,QFlex-TA+,7,100.0,1000,2.9,0.013
+Johnson SB,200,QFlex-TA+,10,100.0,1000,27.2,0.0119
+Johnson SB,200,QFlex-TA+,13,100.0,1000,59.3,0.0113
+Johnson SB,200,QFlex-A+,4,100.0,1000,0.0,0.0154
+Johnson SB,200,QFlex-A+,7,100.0,1000,0.0,0.0131
+Johnson SB,200,QFlex-A+,10,100.0,1000,0.0,0.0125
+Johnson SB,200,QFlex-A+,13,100.0,1000,0.6,0.0122

@@ -1,0 +1,5 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Johnson SU,50,QFlex-T+,4,98.1,981,0.0,0.0403
+Johnson SU,50,QFlex-T+,7,92.5,925,20.9,0.0282
+Johnson SU,50,QFlex-T+,10,42.5,425,87.8,0.0189
+Johnson SU,50,QFlex-T+,13,16.5,165,98.2,0.015

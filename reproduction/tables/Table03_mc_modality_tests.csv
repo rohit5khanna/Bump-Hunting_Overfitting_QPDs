@@ -1,0 +1,7 @@
+distribution,n,n_reps,hartigan_reject,hartigan_p_mean,silverman_reject,silverman_p_median,n_silverman_failed
+Johnson SB,50,1000,0.003,0.71373,0.015,0.505,0
+Johnson SB,200,1000,0.002,0.80969,0.026,0.51,0
+Johnson SL,50,1000,0.002,0.79417,0.159,0.285,0
+Johnson SL,200,1000,0.0,0.89861,0.011,0.69,0
+Johnson SU,50,1000,0.0,0.82539,0.121,0.2875,0
+Johnson SU,200,1000,0.0,0.9061,0.009,0.61,0

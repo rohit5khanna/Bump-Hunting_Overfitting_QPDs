@@ -1,0 +1,2 @@
+jitter,n,n_inner,grid_size,hartigan_reject,sil_reject_le1,sil_reject_le1_le2,sil_reject_le1_le2_le3,n_reject_le1,n_reject_le1_le2,n_reject_le1_le2_le3,seq_1mode,seq_2modes,seq_3modes,seq_gt3,sil_p_median_k1,sil_p_median_k2,sil_p_median_k3
+0.5,1000,199,2000,89.2,99.8,3.1,0.0,998,31,0,0.2,96.7,3.1,0.0,0.005,0.305,0.26

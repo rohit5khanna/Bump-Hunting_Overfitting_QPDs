@@ -1,0 +1,3 @@
+test,p_value,deterministic,n_bootstrap
+Hartigan dip,0.5515,True,
+"Silverman (k=1, uncalibrated)",0.3103,False,999.0

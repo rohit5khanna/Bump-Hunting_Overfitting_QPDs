@@ -1,0 +1,13 @@
+{
+  "generated": "2026-10-21T01:41:18",
+  "data_file": "geyser_299.csv",
+  "data_N": 299,
+  "data_sha256": "691381248e0418ccbfc23cc5093e71220313ddb7ffb70e817e27a6dfb900fbcc",
+  "source": "tables/geyser_sweep.csv (one sweep, both outputs)",
+  "n_bootstrap": 1000,
+  "jitter_half_width_min": 0.5,
+  "interdecile_divisor_min": 37.0,
+  "iqr_convention": "raw [q25, q75] and width; IQR / median alongside",
+  "rank_flip": "within-fit: primary = longer waiting time; flip if its height < secondary height",
+  "tables_consistent": true
+}

@@ -1,0 +1,5 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Johnson SL,200,QFlex-T+,4,100.0,1000,0.0,0.0241
+Johnson SL,200,QFlex-T+,7,99.9,999,7.0,0.0192
+Johnson SL,200,QFlex-T+,10,69.8,698,46.0,0.0151
+Johnson SL,200,QFlex-T+,13,42.2,422,89.1,0.0125

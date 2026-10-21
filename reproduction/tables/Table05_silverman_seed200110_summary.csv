@@ -1,0 +1,2 @@
+seed,n,k,n_inner,silverman_reject,silverman_p_median,hartigan_reject,n_silverman_failed
+200110,1000,1,199,7.8,0.2375,30.2,0

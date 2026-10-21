@@ -1,0 +1,12 @@
+model,K,original_n_modes,n_valid,persist_pct,max_modes
+QFlex-T+,3,1,1000,100.0,1
+QFlex-T+,4,1,1000,100.0,1
+QFlex-T+,5,1,1000,100.0,1
+QFlex-T+,6,1,1000,98.1,2
+QFlex-T+,7,1,1000,75.3,2
+QFlex-T+,8,1,977,74.9,2
+QFlex-T+,9,2,714,59.1,4
+QFlex-T+,10,2,640,60.9,5
+QFlex-T+,11,2,559,60.8,5
+QFlex-T+,12,2,282,30.9,5
+QFlex-T+,13,2,261,21.8,6

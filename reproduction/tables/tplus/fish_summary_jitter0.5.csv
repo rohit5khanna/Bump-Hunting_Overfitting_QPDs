@@ -1,0 +1,5 @@
+Jitter_lb,Model,K,n_replicates,Validity_pct,n_valid,Unimodal_pct,Bimodal_pct,GT2_pct,n_with_mode,PrimaryModeLocation_IQR_lb,PrimaryModeHeight_IQR_perlb,n_secondary,SecondaryModeLocation_IQR_lb,SecondaryModeHeight_IQR_perlb,MedianW1_Eq6,W1_IQR,MedianW1_own_Eq6,MedianW1_orig_Eq6
+0.5,Log QFlex-T+,4,1000,100.0,1000,100.0,0.0,0.0,1000,0.2049,0.0022,0,,,0.0307,0.0028,0.0307,0.0395
+0.5,Log QFlex-T+,7,1000,100.0,1000,95.7,4.3,0.0,1000,0.1437,0.0067,43,0.1442,0.0023,0.0135,0.0019,0.0135,0.0289
+0.5,Log QFlex-T+,10,1000,100.0,1000,67.8,32.2,0.0,1000,0.1278,0.008,322,0.2199,0.0034,0.0111,0.0014,0.0111,0.0275
+0.5,Log QFlex-T+,13,1000,100.0,1000,0.8,99.0,0.2,1000,0.2941,0.0062,992,0.1371,0.0078,0.0091,0.001,0.0091,0.0269

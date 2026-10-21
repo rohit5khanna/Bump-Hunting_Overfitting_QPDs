@@ -1,0 +1,21 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Inverse Gaussian,200,Metalog,4,100.0,1000,0.0,0.0221
+Inverse Gaussian,200,Metalog,7,93.8,938,0.9,0.0168
+Inverse Gaussian,200,Metalog,10,64.1,641,42.0,0.0133
+Inverse Gaussian,200,Metalog,13,35.5,355,83.7,0.0115
+Inverse Gaussian,200,QFlex-U,4,100.0,1000,0.0,0.0223
+Inverse Gaussian,200,QFlex-U,7,65.2,652,6.3,0.0169
+Inverse Gaussian,200,QFlex-U,10,41.6,416,57.0,0.014
+Inverse Gaussian,200,QFlex-U,13,21.8,218,89.0,0.0112
+Inverse Gaussian,200,QFlex-T+,4,100.0,1000,0.0,0.0223
+Inverse Gaussian,200,QFlex-T+,7,99.8,998,5.0,0.0176
+Inverse Gaussian,200,QFlex-T+,10,67.8,678,44.4,0.0138
+Inverse Gaussian,200,QFlex-T+,13,38.3,383,86.7,0.0113
+Inverse Gaussian,200,QFlex-TA+,4,100.0,1000,0.0,0.0223
+Inverse Gaussian,200,QFlex-TA+,7,100.0,1000,1.0,0.0184
+Inverse Gaussian,200,QFlex-TA+,10,100.0,1000,7.9,0.0166
+Inverse Gaussian,200,QFlex-TA+,13,100.0,1000,29.1,0.0154
+Inverse Gaussian,200,QFlex-A+,4,100.0,1000,0.0,0.0223
+Inverse Gaussian,200,QFlex-A+,7,100.0,1000,1.0,0.0185
+Inverse Gaussian,200,QFlex-A+,10,100.0,1000,1.2,0.0175
+Inverse Gaussian,200,QFlex-A+,13,100.0,1000,1.9,0.017

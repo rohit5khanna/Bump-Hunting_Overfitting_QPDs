@@ -1,0 +1,16 @@
+Distribution,N,K,Model,replicates,valid,valid_unimodal,Validity_pct,FalseModality_pct,ValidUnimodal_pct
+Johnson SU,200,10,Metalog,1000,811,307,81.1,62.15,30.7
+Johnson SU,200,10,QFlex-U,1000,496,256,49.6,48.39,25.6
+Johnson SU,200,10,QFlex-T+,1000,768,487,76.8,36.59,48.7
+Johnson SU,200,10,QFlex-TA+,1000,994,798,99.4,19.72,79.8
+Johnson SU,200,10,QFlex-A+,1000,1000,1000,100.0,0.0,100.0
+Johnson SL,200,10,Metalog,1000,694,363,69.4,47.69,36.3
+Johnson SL,200,10,QFlex-U,1000,434,169,43.4,61.06,16.9
+Johnson SL,200,10,QFlex-T+,1000,698,377,69.8,45.99,37.7
+Johnson SL,200,10,QFlex-TA+,1000,1000,864,100.0,13.6,86.4
+Johnson SL,200,10,QFlex-A+,1000,1000,967,100.0,3.3,96.7
+Johnson SB,200,10,Metalog,1000,694,187,69.4,73.05,18.7
+Johnson SB,200,10,QFlex-U,1000,434,95,43.4,78.11,9.5
+Johnson SB,200,10,QFlex-T+,1000,698,245,69.8,64.9,24.5
+Johnson SB,200,10,QFlex-TA+,1000,1000,728,100.0,27.2,72.8
+Johnson SB,200,10,QFlex-A+,1000,1000,1000,100.0,0.0,100.0

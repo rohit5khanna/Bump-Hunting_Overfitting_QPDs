@@ -1,0 +1,13 @@
+sample,k,p_ours
+unimodal_normal,1,0.911
+unimodal_normal,2,0.905
+unimodal_normal,3,0.764
+bimodal_0_4,1,0.001
+bimodal_0_4,2,0.768
+bimodal_0_4,3,0.401
+trimodal_0_5_10,1,0.021
+trimodal_0_5_10,2,0.001
+trimodal_0_5_10,3,0.558
+johnson_su_paper,1,0.483
+johnson_su_paper,2,0.169
+johnson_su_paper,3,0.17

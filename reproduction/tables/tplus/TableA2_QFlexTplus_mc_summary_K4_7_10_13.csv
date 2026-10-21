@@ -1,0 +1,25 @@
+Distribution,N,Model,K,Validity_pct,n_valid,FalseModality_pct,MedianW1_Eq6
+Johnson SB,50,QFlex-T+,4,100.0,1000,1.1,0.0266
+Johnson SB,50,QFlex-T+,7,89.8,898,46.8,0.0212
+Johnson SB,50,QFlex-T+,10,41.3,413,95.9,0.0165
+Johnson SB,50,QFlex-T+,13,9.5,95,100.0,0.0136
+Johnson SB,200,QFlex-T+,4,100.0,1000,0.0,0.0154
+Johnson SB,200,QFlex-T+,7,99.9,999,6.9,0.0126
+Johnson SB,200,QFlex-T+,10,69.8,698,64.9,0.0104
+Johnson SB,200,QFlex-T+,13,42.2,422,96.0,0.009
+Johnson SL,50,QFlex-T+,4,100.0,1000,0.0,0.0358
+Johnson SL,50,QFlex-T+,7,89.8,898,27.8,0.0266
+Johnson SL,50,QFlex-T+,10,41.3,413,87.4,0.0192
+Johnson SL,50,QFlex-T+,13,9.5,95,97.9,0.0151
+Johnson SL,200,QFlex-T+,4,100.0,1000,0.0,0.0241
+Johnson SL,200,QFlex-T+,7,99.9,999,7.0,0.0192
+Johnson SL,200,QFlex-T+,10,69.8,698,46.0,0.0151
+Johnson SL,200,QFlex-T+,13,42.2,422,89.1,0.0125
+Johnson SU,50,QFlex-T+,4,98.1,981,0.0,0.0403
+Johnson SU,50,QFlex-T+,7,92.5,925,20.9,0.0282
+Johnson SU,50,QFlex-T+,10,42.5,425,87.8,0.0189
+Johnson SU,50,QFlex-T+,13,16.5,165,98.2,0.015
+Johnson SU,200,QFlex-T+,4,99.8,998,0.0,0.0325
+Johnson SU,200,QFlex-T+,7,98.4,984,7.5,0.0214
+Johnson SU,200,QFlex-T+,10,76.8,768,36.6,0.0162
+Johnson SU,200,QFlex-T+,13,45.6,456,75.4,0.0128

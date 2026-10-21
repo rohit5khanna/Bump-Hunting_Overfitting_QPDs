@@ -1,0 +1,29 @@
+{
+ "section": "Bootstrap Diagnostics of Structural Stability -- the section's CANONICAL realization",
+ "CANONICAL_SEED": 200110,
+ "why_this_seed": "Replication 68. Chosen because the Metalog fit to the ORIGINAL sample is feasible at ALL FOUR plotted orders K=4,7,10,13 and is multimodal at 7, 10 and 13 (mode counts 1/2/2/2), so every row of Figure 5 carries its highlighted bar. Under seed 200043 (replication 1, the section's canonical realization until the paper moved) the Metalog is infeasible at K=13 and QFlex-U at K=10 and 13, leaving those bars and the Persist cells blank. All four models are feasible at all four orders here. NOTE: selecting a realization on this criterion is selection on the outcome, so the paper has to say so where it uses this realization. The published Figures 4-7 and Table 4 are now this realization, not 200043.",
+ "relationship_to_canonical": "This IS the canonical build. It began as a parallel build under 'Replication 68/' while reproduction/ was still pinned to replication 1; once the paper moved to replication 68 those assets were folded into reproduction/ and the parallel build was retired to not_in_paper/Replication_68_build_shell/. Its five bootstrap scripts were byte-identical to reproduction/scripts apart from SEED.",
+ "dist": "johnson_su",
+ "sample_size": 200,
+ "seed": 200110,
+ "seed_formula": "seed = 42 + sample_size*1000 + replication  ->  replication 68",
+ "generator": "jpse.JohnsonSU(eta=0, kappa=1, c=0.5, d=1.2).rvs(size=200, random_state=200110)",
+ "generator_note": "jpse uses legacy np.random.seed + inverse-CDF. scipy.stats.johnsonsu.rvs with default_rng gives a DIFFERENT sample for the same seed.",
+ "bootstrap_scheme": "rng = np.random.default_rng(200110*10_000 + b); x_boot = rng.choice(x_orig_unsorted, size=200, replace=True)",
+ "n_bootstrap": 1000,
+ "source_artifact": "NONE. Seed 200043 has a stored cloud checkpoint; this realization does not, so the sorted CSV here is sort(unsorted fresh draw) exactly, with no artifact to reconcile against. bootstrap_section.verify() cannot run for this seed for that reason.",
+ "x_orig": {
+  "file": "su_n200_seed200110_x_orig.csv",
+  "n": 200,
+  "min": -5.202021974668589,
+  "max": 4.511220897568476,
+  "mean": -0.3755248790071567,
+  "sha256_of_csv": "e95a98f9a79faab2f8096d76d6f3a3fa8a2c6bafb88aec2893e516857f092bc1"
+ },
+ "x_orig_unsorted": {
+  "file": "su_n200_seed200110_x_orig_unsorted.csv",
+  "sha256_of_csv": "d78b5ecd6306a5c86773145a09b939baa2c041e6584d34b568e0bf1b0892e47c",
+  "why": "choice() selects indices, so ordering determines each replicate. The sorted artifact alone cannot reproduce the resamples."
+ },
+ "generated": "2026-09-25T20:12:49"
+}

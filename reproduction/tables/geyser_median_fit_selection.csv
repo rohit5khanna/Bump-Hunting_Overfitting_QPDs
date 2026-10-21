@@ -1,0 +1,4 @@
+model,K,n_valid,W1_star_Eq6,selected_replicate,selected_W1_Eq6,W1_gap,n_modes,mode_locations,mode_heights,rank_flipped
+Log Metalog,7,361,0.006964,329,0.024947,0.017983,2,48.631;82.877,0.02851;0.06093,False
+Log Metalog,8,725,0.006964,967,0.017223,0.010258,3,49.123;79.858;90.675,0.22280;0.04342;0.02468,
+Log QFlex-TA+,10,997,0.006964,514,0.019788,0.012823,2,49.170;81.369,0.03376;0.05252,False

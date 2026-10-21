@@ -1,0 +1,8 @@
+{
+  "generated": "2026-10-21T01:41:25",
+  "source": "tables/bootstrap_sweep.csv (Johnson SU, N=200, seed 200110, 1000 resamples)",
+  "w1": "Equation 6 at the sample points (eval_framework.w1); _own = vs the resample, _orig = vs the original realization; MedianW1_Eq6 = the one eval_framework.BOOTSTRAP_W1_REFERENCE selects",
+  "persist": "share of valid fits whose mode count equals the original fit's",
+  "modality_denominator": "valid fits with a usable PDF (n_modes >= 0); the 1-mode column counts no-peak fits as unimodal, as Tables 7, 8 and 10 do (n_no_peak records how many)",
+  "iqr": "RAW, over the dominant (tallest) mode of each fit -- location in the realization's units, height as a density"
+}
