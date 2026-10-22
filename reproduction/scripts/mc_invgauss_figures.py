@@ -5,14 +5,14 @@ section's figure is Figure O8, invgauss_reference_figure.py; its table is Table 
 invgauss_table_O2.py).
 
   figures/other/invgauss_vs_sl_reference.png      the two reference densities, P10/P50/P90 marked
-  figures/other/invgauss_mc_n50.png, _n200.png    same six panels as Figures O1/O2 (Johnson SL), five QPDs
-  tables/invgauss/invgauss_vs_sl_K4_7_10_13.csv   IG next to Johnson SL, both N, all five QPDs
+  figures/other/invgauss_mc_n200.png              same six panels as Figure O2 (Johnson SL, N = 200), five QPDs
+  tables/invgauss/invgauss_vs_sl_K4_7_10_13.csv   IG next to Johnson SL, N = 200, all five QPDs
+                                                  (the data in excel/InverseGaussian_vs_JohnsonSL_MC.xlsx)
 
 Panels, aggregation and colours follow mc_johnson_figures.py exactly (mode count = max(1, peaks);
-location / height of the tallest interior peak over valid fits; K = 3..10; y-ranges shared by
-the N = 50 / 200 pair; W1 shown x100). QFlex-T+ uses the same colour/marker as in Figures 3, 4
-and O1-O4 (the QFlex-T+ run of mc_johnson_figures.py). Truth lines: the IG mode and the density
-at the mode (closed form).
+location / height of the tallest interior peak over valid fits; K = 3..10; W1 shown x100).
+QFlex-T+ uses the same colour/marker as in Figures 3, 4 and O1-O4. Truth lines: the IG mode and
+the density at the mode (closed form).
 """
 import os, sys
 import numpy as np, pandas as pd
@@ -111,10 +111,9 @@ def reference_figure():
 
 def comparison_table():
     rows = []
-    for n in (50, 200):
+    for n in (200,):
         ig = pd.read_csv(os.path.join(TAB, 'invgauss', f'mc_rebuilt_ig_n{n}.csv'))
-        sl = pd.concat([pd.read_csv(os.path.join(TAB, f'mc_rebuilt_sl_n{n}.csv')),
-                        pd.read_csv(os.path.join(TAB, 'tplus', f'mc_rebuilt_sl_n{n}.csv'))])
+        sl = pd.read_csv(os.path.join(TAB, f'mc_rebuilt_sl_n{n}.csv'))
         for mo in MODELS:
             for K in IGR.KS:
                 a = sl[(sl.Model == mo) & (sl.K == K)].iloc[0]; b = ig[(ig.Model == mo) & (ig.K == K)].iloc[0]
@@ -128,9 +127,8 @@ def comparison_table():
 
 
 if __name__ == '__main__':
-    pair = {n: aggregate(n) for n in (50, 200)}
-    for n in (50, 200):
-        mc_figure(n, pair[n], pair)
+    pair = {n: aggregate(n) for n in (200,)}
+    mc_figure(200, pair[200], pair)
     reference_figure()
     p = np.array([0.1, 0.5, 0.9])
     print('quantiles  P10 P50 P90')

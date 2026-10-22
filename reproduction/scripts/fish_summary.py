@@ -1,8 +1,8 @@
 """
 Fish biology -- per-model summary table: paper Table 10 (stability of model
 features, 0.5 lb jitter), written as Table10_fish_summary_jitter0.5.csv.
-Other jitters (--jitter 1.0) and the QFlex-T+ run write
-fish_summary_jitter<j>.csv, which is not in the paper.
+Other jitters (--jitter 1.0) write fish_summary_jitter<j>.csv, which is not in
+the paper.
 
 Table 9 reports only the Hartigan and Silverman results by jitter width; this
 table states how often a fit is valid, how often it has more than one mode,
@@ -42,16 +42,12 @@ import eval_framework as EF
 import figure_style as FS
 
 TAB = os.path.join(HERE, '..', 'tables')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB = TP.table_dir(TAB)
 JITTER = 0.5      # overridden by --jitter; 0.5 lb is the paper's canonical width
 KS = FS.K_STANDARD
 # Model order follows the paper's convention (Metalog, QFlex-U, QFlex-TA+).
 SPECS = [('Log Metalog', 'metalog'), ('Log QFlex-U', 'qflex_u'),
          ('Log QFlex-TA+', 'qflex_ta')]
-CT = {'qflex_u': ConstraintType.NONE, 'qflex_ta': ConstraintType.TA, 'qflex_tl': ConstraintType.TL}
-if TP.TPLUS_ONLY:
-    SPECS = [('Log ' + TP.LABEL, 'qflex_tl')]
+CT = {'qflex_u': ConstraintType.NONE, 'qflex_ta': ConstraintType.TA}
 
 
 def fit(kind, x, p, K):
@@ -178,7 +174,7 @@ def main():
             ))
     res = pd.DataFrame(out)
     res.insert(0, 'Jitter_lb', JITTER)
-    dst = os.path.join(TAB, ('Table10_fish_summary_jitter0.5.csv' if JITTER == 0.5 and not TP.TPLUS_ONLY
+    dst = os.path.join(TAB, ('Table10_fish_summary_jitter0.5.csv' if JITTER == 0.5
                              else f'fish_summary_jitter{JITTER}.csv'))
     res.to_csv(dst, index=False)
     print('\n' + res.to_string(index=False))
@@ -197,7 +193,7 @@ def main():
                'per_replicate_dump': f'tables/fish_summary_perreplicate_jitter{JITTER}.csv',
                'jitter_lb': JITTER,
                'runtime_sec': round(time.time() - t0, 1)},
-              open(os.path.join(TP.log_dir(os.path.join(HERE, '..', 'logs')), f'fish_summary_provenance_jitter{JITTER}.json'), 'w'),
+              open(os.path.join(HERE, '..', 'logs', f'fish_summary_provenance_jitter{JITTER}.json'), 'w'),
               indent=2)
     print(f'\n-> {dst}  ({time.time()-t0:.0f}s)')
 

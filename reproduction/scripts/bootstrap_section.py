@@ -10,7 +10,7 @@ THE REALIZATION. Seed 200110 -- replication 68 of the Johnson SU, N = 200
 Monte Carlo. Table 6 (bootstrap_summary.py -> tables/Table06_bootstrap_summary.csv)
 gives its bootstrap summary.
 
-WHY 68 AND NOT 1. Replication 68 is feasible for all four models at every order
+WHY 68 AND NOT 1. Replication 68 is feasible for all five QPDs at every order
 3-13. On replication 1 (seed 200043) the Metalog ORIGINAL-sample fit is
 infeasible at K = 11, 12 and 13 and QFlex-U from K = 9 up, which would leave
 missing bars in the section's figures. Note that 68 was SELECTED on that

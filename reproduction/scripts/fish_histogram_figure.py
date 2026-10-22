@@ -94,7 +94,7 @@ def main():
         print(f'Saved -> {out}.png')
 
     pd.DataFrame({'p': PLOT_GRID, 'qf_weight_lb': qf_plot, 'pdf': pdf_plot}).to_csv(
-        os.path.join(TAB, 'Figure15_metalog_overlay_paneldata.csv'), index=False)
+        os.path.join(TAB, 'Figure15_fish_histogram_paneldata.csv'), index=False)
     for edges, name in [(edges_half, 'bins0.5'), (edges_one, 'bins1.0')]:
         cnt, e = np.histogram(x, bins=edges, density=True)
         pd.DataFrame({'bin_left': e[:-1], 'bin_right': e[1:], 'density': cnt}).to_csv(

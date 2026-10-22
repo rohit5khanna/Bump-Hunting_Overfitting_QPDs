@@ -10,7 +10,6 @@ separately.
 W1 is Equation 6 at the replicate's own sample points (eval_framework.w1).
 
 writes tables/Table07_bimodal_mc.csv
-       (QFlex-T+ run: tables/tplus/bimodal_mc_summary_QFlexTplus.csv, not in the paper)
 """
 import os, sys, json, datetime, warnings
 import numpy as np, pandas as pd
@@ -20,8 +19,6 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from bimodal_common import K_VALUES, SPECS, N_REPLICATES, SAMPLE_SIZE
 
 TAB = os.path.join(HERE, '..', 'tables'); LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 
 
 def main():
@@ -45,7 +42,7 @@ def main():
                 MedianW1_vs_sample=round(float(v['w1_eq6_sample'].median()), 4) if nv else np.nan,
                 MedianW1_raw_sample=round(float(v['w1_raw_sample'].median()), 4) if nv else np.nan))
     t = pd.DataFrame(rows)
-    t.to_csv(os.path.join(TAB, TP.name('Table07_bimodal_mc', 'bimodal_mc_summary_QFlexTplus') + '.csv'), index=False)
+    t.to_csv(os.path.join(TAB, 'Table07_bimodal_mc.csv'), index=False)
 
     print(t[['model', 'K', 'Valid_pct', 'MaxModes', 'Unimodal_pct', 'zero_mode_pct',
              'Bimodal_pct', 'GT2_pct', 'MedianW1_vs_sample']].to_string(index=False))
@@ -68,7 +65,7 @@ def main():
         'w1_columns': {'MedianW1_raw_sample': 'unnormalized, at the replicate\'s own sample points',
                        'MedianW1_vs_sample': 'Equation 6 at the replicate\'s own sample points'},
         'n_replicates': N_REPLICATES, 'sample_size': SAMPLE_SIZE,
-    }, open(os.path.join(LOG, TP.name('Table07_bimodal_provenance', 'bimodal_mc_summary_QFlexTplus_provenance') + '.json'), 'w'), indent=2)
+    }, open(os.path.join(LOG, 'Table07_bimodal_provenance.json'), 'w'), indent=2)
 
 
 if __name__ == '__main__':

@@ -18,7 +18,6 @@ given alongside in geyser_mode_dispersion.csv.
 Primary mode = the mode at the longer waiting time. A rank flip is a bimodal
 fit whose primary mode is lower than its secondary mode.
 
-(QFlex-T+ run: tables/tplus/geyser_summary_QFlexTplus.csv, not in the paper.)
 """
 import os, sys, json, datetime, warnings
 import numpy as np, pandas as pd
@@ -30,12 +29,8 @@ from geyser_common import load_geyser, interdecile, JITTER, N_BOOT, data_fingerp
 
 TAB = os.path.join(HERE, '..', 'tables')
 LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 
 T9_SPECS = [('Log Metalog', 7), ('Log Metalog', 8), ('Log QFlex-TA+', 10)]
-if TP.TPLUS_ONLY:
-    T9_SPECS = [('Log ' + TP.LABEL, 10)]
 
 
 def iqr(v):
@@ -76,7 +71,7 @@ def main():
             W1_min_q25=round(lou, 4), W1_min_q75=round(hiu, 4), W1_min_IQR=round(wu_, 4),
         ))
     t8 = pd.DataFrame(rows)
-    t8.to_csv(os.path.join(TAB, TP.name('Table13_geyser_summary', 'geyser_summary_QFlexTplus') + '.csv'), index=False)
+    t8.to_csv(os.path.join(TAB, 'Table13_geyser_summary.csv'), index=False)
 
     print('=' * 100)
     print('TABLE 13 -- geyser bootstrap summary (jitter applied, Equation 6 W1)')
@@ -84,8 +79,6 @@ def main():
     show = ['model', 'K', 'pct_feasible', 'pct_unimodal', 'pct_bimodal', 'pct_3plus',
             'W1_Eq6_median', 'W1_Eq6_IQR']
     print(t8[show].to_string(index=False))
-    if TP.TPLUS_ONLY:       # the mode-dispersion slice is only for the paper's models
-        return
 
     # ---------------- mode dispersion over the bimodal fits ----------------
     rows9 = []

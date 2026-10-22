@@ -29,8 +29,6 @@ import numpy as np, pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 TAB = os.path.join(HERE, '..', 'tables')
 LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 
 
 def _parse(locs, hts):
@@ -64,7 +62,7 @@ def main():
                          n_primary=len(P), prim_loc=_iqr(P[:, 0]), prim_ht=_iqr(P[:, 1]),
                          n_secondary=len(S), sec_loc=_iqr(S[:, 0]), sec_ht=_iqr(S[:, 1])))
     out = pd.DataFrame(rows)
-    dst = os.path.join(TAB, TP.name('Table13_geyser_mode_iqr', 'geyser_mode_iqr_QFlexTplus') + '.csv')
+    dst = os.path.join(TAB, 'Table13_geyser_mode_iqr.csv')
     out.to_csv(dst, index=False)
     os.makedirs(LOG, exist_ok=True)
     json.dump({'generated': datetime.datetime.now().isoformat(timespec='seconds'),

@@ -60,9 +60,6 @@ P_GRID      = EF.GRID          # evaluation framework: 0.001..0.999
 K_VALUES = [4, 7, 10, 13]    # the paper's standard order set
 SPECS = ([('Log Metalog', 'metalog', K) for K in K_VALUES] +
          [('Log QFlex-A+', 'qflex_a', K) for K in K_VALUES])
-import tplus_mode as _TP                # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-if _TP.TPLUS_ONLY:
-    SPECS = [('Log ' + _TP.LABEL, 'qflex_tl', K) for K in K_VALUES]
 
 
 def load_hydrology(sort=True):

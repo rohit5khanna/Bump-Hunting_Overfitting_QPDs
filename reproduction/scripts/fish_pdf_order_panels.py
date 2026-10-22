@@ -204,7 +204,7 @@ def main():
     fig.savefig(stem + '.pdf', bbox_inches='tight')
     plt.close(fig); out_files.append(stem + '.png')
 
-    csv = os.path.join(TAB, 'fish_pdf_order_panels.csv')
+    csv = os.path.join(TAB, 'Figure17_fish_fits_K7_10_13_paneldata.csv')
     pd.DataFrame(rows).to_csv(csv, index=False)
     json.dump({
         'generated': datetime.datetime.now().isoformat(timespec='seconds'),

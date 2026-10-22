@@ -58,9 +58,6 @@ SAMPLE_SIZE  = 200
 P_GRID       = EF.GRID          # evaluation framework: 0.001..0.999
 K_VALUES     = list(range(4, 15))
 SPECS        = [('Metalog', 'metalog'), ('QFlex-TA+', 'qflex_ta')]
-import tplus_mode as _TP                # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-if _TP.TPLUS_ONLY:
-    SPECS = [(_TP.LABEL, 'qflex_tl')]
 
 DIST_PARAMS = dict(xi=0, lam=1, gamma=0.5, delta=1.2)
 WEIGHT_1, WEIGHT_2 = 0.60, 0.40

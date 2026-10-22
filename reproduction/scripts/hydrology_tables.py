@@ -12,7 +12,6 @@ on the 0.001..0.999 grid. The paper counts these as unimodal
 (`modes_1_pct`); `modes_1_pct_strict` excludes them.
 
 writes tables/Table08_hydrology.csv
-       (QFlex-T+ run: tables/tplus/hydrology_summary_QFlexTplus.csv, not in the paper)
 """
 import os, sys, json, datetime, warnings
 import numpy as np, pandas as pd
@@ -22,14 +21,10 @@ HERE = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, HERE)
 from hydrology_common import K_VALUES, load_hydrology, interdecile, N_BOOT, data_fingerprint
 
 TAB = os.path.join(HERE, '..', 'tables'); LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 
 ORDER = ([('GEV', 0)] +
          [('Log Metalog', K) for K in K_VALUES] +
          [('Log QFlex-A+', K) for K in K_VALUES])
-if TP.TPLUS_ONLY:
-    ORDER = [('Log ' + TP.LABEL, K) for K in K_VALUES]
 
 
 def iqr(v):
@@ -75,7 +70,7 @@ def main():
             modes_2_pct=round(100 * np.mean(m == 2), 1) if nv else np.nan,
             modes_gt2_pct=round(100 * np.mean(m > 2), 1) if nv else np.nan))
     t = pd.DataFrame(rows)
-    t.to_csv(os.path.join(TAB, TP.name('Table08_hydrology', 'hydrology_summary_QFlexTplus') + '.csv'), index=False)
+    t.to_csv(os.path.join(TAB, 'Table08_hydrology.csv'), index=False)
 
     print(t[['Model', 'ValidFits_pct', 'modes_1_pct', 'n_flat_no_peak_detected', 'modes_2_pct',
              'modes_gt2_pct', 'ModeLocation_IQR_ft', 'ModeHeight_IQR_perft',
@@ -91,7 +86,7 @@ def main():
         'mode_convention': 'modes_1_pct counts no-peak fits as unimodal (as in the paper); '
                            'modes_1_pct_strict excludes them',
         'n_bootstrap': N_BOOT, 'interdecile_L_ft': L,
-    }, open(os.path.join(LOG, TP.name('Table08_hydrology_provenance', 'hydrology_summary_QFlexTplus_provenance') + '.json'), 'w'), indent=2)
+    }, open(os.path.join(LOG, 'Table08_hydrology_provenance.json'), 'w'), indent=2)
 
 
 if __name__ == '__main__':

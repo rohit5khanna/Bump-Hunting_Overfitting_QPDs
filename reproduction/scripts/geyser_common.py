@@ -63,9 +63,6 @@ P_GRID      = EF.GRID          # evaluation framework: 0.001..0.999
 K_VALUES    = list(range(4, 14))   # geyser lists every order 4-13
 SPECS       = [('Log Metalog', 'metalog'), ('Log QFlex-U', 'qflex_u'),
                ('Log QFlex-TA+', 'qflex_ta')]   # paper order: Metalog, QFlex-U, QFlex-TA+
-import tplus_mode as _TP                # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-if _TP.TPLUS_ONLY:
-    SPECS = [('Log ' + _TP.LABEL, 'qflex_tl')]
 
 
 EXPECTED_N = 299        # Azzalini & Bowman (1990); MASS, sm and TH.data all ship 299

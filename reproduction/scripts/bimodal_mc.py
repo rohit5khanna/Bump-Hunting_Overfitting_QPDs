@@ -42,8 +42,6 @@ import eval_framework as EF
 
 TAB = os.path.join(HERE, '..', 'tables')
 LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 PART = os.path.join(TAB, 'bimodal_partials_framework')   # per-block partials
 for d in (TAB, LOG, PART):
     os.makedirs(d, exist_ok=True)
@@ -60,8 +58,7 @@ def _init():
 def _fit(key, x, p, K):
     try:
         m = (Metalog(x, p, terms=K) if key == 'metalog'
-             else QFlex(x, p, terms=K, constraint_type=(ConstraintType.TL if key == 'qflex_tl'
-                                                        else ConstraintType.TA)))
+             else QFlex(x, p, terms=K, constraint_type=ConstraintType.TA))
         return m if EF.is_valid(m) else None
     except Exception:
         return None

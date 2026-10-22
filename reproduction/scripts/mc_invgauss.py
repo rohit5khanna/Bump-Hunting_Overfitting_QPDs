@@ -8,8 +8,8 @@ Same Monte Carlo design as Johnson SL (mc_tables_rebuild.py), so the two can be
 compared row by row:
   * IG(mu = 0.919, lambda = 1.069), chosen to match Johnson SL's P10 / P50 / P90
     (SL: xi=0, lam=1, gamma=0.5, delta=1.2);
-  * N in {50, 200}; 1000 replicates; orders K = 3..13 (tables use 4, 7, 10, 13,
-    figures 3..10);
+  * N = 200 (as in the paper); 1000 replicates; orders K = 3..13 (Table O2 uses
+    4, 7, 10, 13);
   * five QPDs: Metalog, QFlex-U, QFlex-T+, QFlex-TA+, QFlex-A+, all fitted with the
     Log transform and the TRUE lower bound 0 (exactly as Johnson SL);
   * the paper's evaluation framework (code/common/eval_framework.py) for validity,
@@ -27,7 +27,7 @@ Outputs (all under tables/invgauss/; the Johnson outputs are not touched):
                                             invgauss_table_O2.py)
 
 usage:
-  python3 mc_invgauss.py --n 200 --procs 4                 # everything for one N
+  python3 mc_invgauss.py --n 200 --procs 4                 # the full run
   python3 mc_invgauss.py --n 200 --reps 1-250 --procs 4    # a chunk (partials)
   python3 mc_invgauss.py --n 200 --merge                   # combine the chunks
 """
@@ -110,7 +110,7 @@ def finish(df, n):
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('--n', type=int, required=True)
+    ap.add_argument('--n', type=int, default=200, choices=[200], help='the paper uses N = 200 only')
     ap.add_argument('--reps', type=str, default='', help='chunk, e.g. 1-250')
     ap.add_argument('--merge', action='store_true')
     ap.add_argument('--procs', type=int, default=4)

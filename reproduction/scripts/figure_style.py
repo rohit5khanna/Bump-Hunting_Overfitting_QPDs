@@ -1,8 +1,10 @@
 """
 Colours, line styles and output locations for the paper's figures.
 
-The four colours in QPD are reserved for the four QPDs. Anything that is not
-one of those models -- GEV, the population curve, the observed data,
+The four colours in QPD are reserved for Metalog, QFlex-U, QFlex-TA+ and
+QFlex-A+; scripts draw QFlex-T+ in #e377c2. In the figures listed in RESTYLED
+every model is then recoloured on save (see _NEW). Anything that is not a QPD
+-- GEV, the population curve, the observed data,
 bootstrap bands -- draws from OTHER. Log variants inherit the parent colour
 ('Log Metalog' is Metalog blue). Model order is carried by line style.
 

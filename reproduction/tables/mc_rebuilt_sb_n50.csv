@@ -7,6 +7,10 @@ Johnson SB,50,QFlex-U,4,99.2,992,1.1,0.0266
 Johnson SB,50,QFlex-U,7,52.5,525,64.8,0.0204
 Johnson SB,50,QFlex-U,10,24.7,247,97.6,0.0159
 Johnson SB,50,QFlex-U,13,5.0,50,100.0,0.013
+Johnson SB,50,QFlex-T+,4,100.0,1000,1.1,0.0266
+Johnson SB,50,QFlex-T+,7,89.8,898,46.8,0.0212
+Johnson SB,50,QFlex-T+,10,41.3,413,95.9,0.0165
+Johnson SB,50,QFlex-T+,13,9.5,95,100.0,0.0136
 Johnson SB,50,QFlex-TA+,4,100.0,1000,1.1,0.0266
 Johnson SB,50,QFlex-TA+,7,100.0,1000,16.5,0.0234
 Johnson SB,50,QFlex-TA+,10,100.0,1000,57.3,0.0207

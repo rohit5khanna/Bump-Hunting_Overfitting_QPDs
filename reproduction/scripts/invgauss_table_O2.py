@@ -1,7 +1,6 @@
 """
 Online Supplement Table O2 -- QPD fit summary for the inverse Gaussian Monte Carlo
-(Online Supplement Section O4, N = 200), from the per-replicate output of mc_invgauss.py. The same
-summary for N = 50 is written as well (not in the paper).
+(Online Supplement Section O4, N = 200), from the per-replicate output of mc_invgauss.py.
 
 For each QPD and K = 4, 7, 10, 13:
   Validity %             share of the 1000 fits that are valid on the grid
@@ -12,7 +11,7 @@ For each QPD and K = 4, 7, 10, 13:
   Median W1 %            median Equation-6 W1 over valid fits, x 100
 
 usage:  python3 invgauss_table_O2.py
-writes: tables/invgauss/TableO2_invgauss_n200.csv, tables/invgauss/invgauss_summary_n50.csv
+writes: tables/invgauss/TableO2_invgauss_n200.csv
 """
 import os, sys
 import pandas as pd
@@ -35,11 +34,9 @@ def table(n):
                              ModeHeight_median_over_true=round(float(v.mode_height.median()) / true_h, 2) if len(v) else float('nan'),
                              MedianW1_pct=round(100 * float(v.w1.median()), 2) if len(v) else float('nan')))
     t = pd.DataFrame(rows)
-    stem = 'TableO2_invgauss_n200' if n == 200 else f'invgauss_summary_n{n}'
-    t.to_csv(os.path.join(TAB, f'{stem}.csv'), index=False)
+    t.to_csv(os.path.join(TAB, f'TableO2_invgauss_n{n}.csv'), index=False)
     return t
 
 
 if __name__ == '__main__':
-    for n in (50, 200):
-        print(table(n).to_string(index=False))
+    print(table(200).to_string(index=False))

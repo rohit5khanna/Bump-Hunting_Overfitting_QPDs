@@ -6,8 +6,7 @@ validity = Q increasing on the 0.001..0.999 grid; modes = interior peaks of the
 grid-difference density (relative prominence >= 1% of the peak's own height); W1 = Equation 6 at
 each replicate's own sample points (no interpolation).
 
-The paper's figures include QFlex-T+ and are written by the QFlex-T+ run
-(QPD_TPLUS_ONLY=1, run_tplus_supplement.sh); see the QPD_TPLUS_ONLY note below.
+All five QPDs are drawn: Metalog, QFlex-U, QFlex-T+, QFlex-TA+, QFlex-A+.
 
   Row 1: Validity Rate    | Median W1 Distance      | False Multimodality Rate
   Row 2: Mean Mode Count  | Mode Location Median    | Mode Height Median
@@ -39,27 +38,14 @@ LOG_DIR  = os.path.join(HERE, '..', 'logs')
 DIST_LABELS = {'johnson_su': 'Johnson SU', 'johnson_sl': 'Johnson SL',
                'johnson_sb': 'Johnson SB'}
 PAIR_NS = [50, 200]
-MODEL_ORDER = ['Metalog', 'QFlex-U', 'QFlex-TA+', 'QFlex-A+']
+MODEL_ORDER = ['Metalog', 'QFlex-U', 'QFlex-T+', 'QFlex-TA+', 'QFlex-A+']   # legend order
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from figure_style import QPD as _QPD
 import figure_style as FS
 COLORS  = dict(_QPD)
-MARKERS = {'Metalog': 'o', 'QFlex-U': 's', 'QFlex-TA+': 'D', 'QFlex-A+': '^'}
-
-# QPD_TPLUS_ONLY=1: the paper's Figures 3, 4 and O1-O4, which show all five
-# models. Reads the four-model per-replicate files plus tables/tplus/; the
-# figures go to figures/, their panel data and provenance to tables/tplus/ and
-# logs/tplus/. Without it, the four-model versions (no QFlex-T+; not in the
-# paper) are written to figures/other/.
-import tplus_mode as TP
-SUFFIX = ''
+COLORS['QFlex-T+'] = '#e377c2'          # pink: not one of the four reserved QPD colours
+MARKERS = {'Metalog': 'o', 'QFlex-U': 's', 'QFlex-T+': 'v', 'QFlex-TA+': 'D', 'QFlex-A+': '^'}
 READ_TAB = TAB_DIR
-if TP.TPLUS_ONLY:
-    MODEL_ORDER = ['Metalog', 'QFlex-U', TP.LABEL, 'QFlex-TA+', 'QFlex-A+']   # legend order
-    COLORS[TP.LABEL] = '#e377c2'     # pink: not one of the four reserved QPD colours
-    MARKERS[TP.LABEL] = 'v'
-    TAB_DIR, LOG_DIR = TP.table_dir(TAB_DIR), TP.log_dir(LOG_DIR)
-    SUFFIX = '_withTplus'
 
 K_FIG = list(range(3, 11))
 
@@ -106,12 +92,8 @@ def load_and_aggregate(dist, n):
     if not os.path.exists(path):
         return None, None
     df = pd.read_csv(path)
-    if TP.TPLUS_ONLY:
-        tpath = os.path.join(READ_TAB, 'tplus', f'mc_perrep_{short}_n{n}.csv')
-        df = pd.concat([df, pd.read_csv(tpath)], ignore_index=True)
-        path = [path, tpath]
     df = df[df.K.isin(K_FIG)]
-    prov = {'file': path, 'rows': len(df),
+    prov = {'file': os.path.relpath(path, os.path.join(HERE, '..')), 'rows': len(df),
             'mtime': [datetime.datetime.fromtimestamp(os.stat(p).st_mtime).isoformat(timespec='seconds')
               for p in (path if isinstance(path, list) else [path])]}
     k_vals = K_FIG
@@ -181,15 +163,13 @@ def make_figure(dist, n, data, pair, prov):
 
     short = dist.replace('johnson_', '')
     # Output names follow the paper's figure numbers: Johnson SU is Figures 3
-    # and 4; SL and SB are the Online Supplement Figures O1-O4. The paper's
-    # figures include QFlex-T+ (QPD_TPLUS_ONLY=1 run); without it the same
-    # figure, minus QFlex-T+, is written to figures/other/ (not in the paper).
+    # and 4; SL and SB are the Online Supplement Figures O1-O4.
     PAPER_FIG = {('su', 50): 'Figure03_MC_JohnsonSU_N50', ('su', 200): 'Figure04_MC_JohnsonSU_N200',
                  ('sl', 50): 'FigureO1_MC_JohnsonSL_N50', ('sl', 200): 'FigureO2_MC_JohnsonSL_N200',
                  ('sb', 50): 'FigureO3_MC_JohnsonSB_N50', ('sb', 200): 'FigureO4_MC_JohnsonSB_N200'}
     DIST = {'su': 'johnson_su', 'sl': 'johnson_sl', 'sb': 'johnson_sb'}
-    name = PAPER_FIG[(short, n)] if TP.TPLUS_ONLY else f'mc_{DIST[short]}_n{n}_without_Tplus'
-    panel_name = f'{DIST[short]}_n{n}{SUFFIX}'          # panel data is named by dataset
+    name = PAPER_FIG[(short, n)]
+    panel_name = name                                   # panel data named after its figure
     path = FS.figure_path(name)
     fig.savefig(path + '.png', dpi=300, bbox_inches='tight')
     fig.savefig(path + '.pdf', bbox_inches='tight')

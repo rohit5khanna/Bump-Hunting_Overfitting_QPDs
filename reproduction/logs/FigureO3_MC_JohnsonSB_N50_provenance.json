@@ -1,0 +1,14 @@
+{
+  "generated": "2026-10-22T12:18:42",
+  "framework": "code/common/eval_framework.py (grid 0.001..0.999)",
+  "seed_formula": "seed = 42 + sample_size*1000 + replication",
+  "true_mode_location": 0.3480207114226545,
+  "true_mode_height": 2.0432426982266745,
+  "source": {
+    "file": "tables/mc_perrep_sb_n50.csv",
+    "rows": 40000,
+    "mtime": [
+      "2026-10-22T12:12:16"
+    ]
+  }
+}

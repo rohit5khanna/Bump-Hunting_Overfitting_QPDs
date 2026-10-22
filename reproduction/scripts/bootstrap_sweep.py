@@ -1,12 +1,13 @@
 """
 Bootstrap diagnostics (Section 4.5) -- the sweep behind Figures 7 and 8,
-Figures O5 and O7 (Online Supplement), Table 6 (via bootstrap_summary.py) and
-the valid-unimodal shifted-modes figure (not in the paper).
+Figures O5-O7 (Online Supplement Section O3), Table 6 (via bootstrap_summary.py)
+and the valid-unimodal shifted-modes figure (not in the paper).
 
 One pinned realization: Johnson SU, N = 200, seed 200110 (see
 bootstrap_section.py, which owns the sample and the resampling rule). 1000
-bootstrap resamples, fitted with Metalog, QFlex-U, QFlex-A+ and QFlex-TA+ at
-K = 3..13.
+bootstrap resamples, fitted with Metalog, QFlex-U, QFlex-A+, QFlex-TA+ and
+QFlex-T+ at K = 3..13. (Table 6 reports the first four; QFlex-T+ appears in
+Figure O6.)
 
 Recorded per fit: validity, mode count, mode locations/heights, and W1, all
 on the paper's evaluation framework (code/common/eval_framework.py: grid
@@ -44,8 +45,6 @@ from qflex.constraints import ConstraintType
 import eval_framework as EF
 
 TAB = os.path.join(HERE, '..', 'tables'); LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 for d in (TAB, LOG): os.makedirs(d, exist_ok=True)
 
 N_BOOT = 1000
@@ -53,9 +52,8 @@ K_ALL = list(range(3, 14))   # 3..13; the paper reports K = 4, 7, 10, 13
 SPECS = [('Metalog', 'metalog', None),
          ('QFlex-U', 'qflex', ConstraintType.NONE),
          ('QFlex-A+', 'qflex', ConstraintType.A),
-         ('QFlex-TA+', 'qflex', ConstraintType.TA)]
-if TP.TPLUS_ONLY:
-    SPECS = [(TP.LABEL, 'qflex', ConstraintType.TL)]
+         ('QFlex-TA+', 'qflex', ConstraintType.TA),
+         ('QFlex-T+', 'qflex', ConstraintType.TL)]
 
 _XS = _XU = _P = None
 

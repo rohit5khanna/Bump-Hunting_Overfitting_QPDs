@@ -64,9 +64,10 @@ notes = ['Sensitivity of mode identification to the relative-prominence threshol
  'For the bimodal mixture the true count is 2. River gauge, fish and geyser are real data (true count unknown).',
  'The 1% (paper) columns are shaded.',
  '',
- 'Settings (as in the paper): MC N = 50 and 200, 1000 replicates, K = 4/7/10/13; inverse Gaussian same; bimodal mixture N = 200,',
- '1000 replicates, K = 4..14; SU bootstrap 1000 resamples of the N = 200 realization; river gauge, fish (jitter 0.5 and 1.0 lb) and',
- 'geyser (jitter 0.5 min): 1000 bootstrap replicates each. QFlex-T+ is included everywhere (supplementary in the paper).',
+ 'Settings (as in the paper): MC N = 50 and 200, 1000 replicates, K = 4/7/10/13; inverse Gaussian N = 200, same design; bimodal',
+ 'mixture N = 200, 1000 replicates, K = 4..14; SU bootstrap 1000 resamples of the N = 200 realization; river gauge, fish (jitter',
+ '0.5 and 1.0 lb) and geyser (jitter 0.5 min): 1000 bootstrap replicates each. Each section uses the QPDs the paper reports for it:',
+ 'all five (including QFlex-T+) for the Monte Carlo, inverse Gaussian and SU bootstrap; the section\'s own models elsewhere.',
  'Source: reproduction/prominence_sensitivity/ (prominence_sensitivity.py, summarize.py, partials/).']
 for i, t in enumerate(notes, 1):
     ws0.cell(i, 1, t).font = F(bold=(i == 1), size=13 if i == 1 else 10)

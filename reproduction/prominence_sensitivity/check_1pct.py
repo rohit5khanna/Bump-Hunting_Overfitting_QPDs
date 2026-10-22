@@ -18,9 +18,9 @@ def cmp(name, mine, ref, keys, vcol, ncol):
 for short in ('su', 'sl', 'sb'):
     for n in (50, 200):
         m = load(f'mc_{short}_{n}').rename(columns={'model': 'Model'})
-        ref = pd.concat([pd.read_csv(f'{T}/mc_perrep_{short}_n{n}.csv'), pd.read_csv(f'{T}/tplus/mc_perrep_{short}_n{n}.csv')])
+        ref = pd.read_csv(f'{T}/mc_perrep_{short}_n{n}.csv')
         cmp(f'MC {short} N={n}', m, ref, ['rep', 'Model', 'K'], 'valid_ref' if 'valid_ref' in ref else 'valid', 'n_peaks')
-for n in (50, 200):
+for n in (200,):                                  # the paper runs the inverse Gaussian at N = 200 only
     m = load(f'ig_{n}').rename(columns={'model': 'Model'})
     ref = pd.read_csv(f'{T}/invgauss/mc_perrep_ig_n{n}.csv')
     cmp(f'IG N={n}', m, ref, ['rep', 'Model', 'K'], 'valid', 'n_peaks')
@@ -28,14 +28,13 @@ for sec, f, rk in (('bimodal', 'bimodal_mc.csv', 'replication'), ('bootstrap', '
                    ('hydrology', 'hydrology_sweep.csv', 'b'), ('geyser', 'geyser_sweep.csv', 'b')):
     m = load(sec)
     m[rk] = m['rep'] if sec == 'bimodal' else m['rep'] - 1
-    ref = pd.concat([pd.read_csv(f'{T}/{f}'), pd.read_csv(f'{T}/tplus/{f}')])
+    ref = pd.read_csv(f'{T}/{f}')
     ncol = 'n_peaks' if 'n_peaks' in ref else 'n_modes'
     m = m.rename(columns={'valid': 'valid'}); ref = ref.rename(columns={'feasible': 'feas'})
     cmp(sec, m, ref, [rk, 'model', 'K'], 'feas', ncol)
 for j in ('0.5', '1.0'):
     m = load(f'fish_{j}')
-    ref = pd.concat([pd.read_csv(f'{T}/fish_summary_perreplicate_jitter{j}.csv'),
-                     pd.read_csv(f'{T}/tplus/fish_summary_perreplicate_jitter{j}.csv')])
+    ref = pd.read_csv(f'{T}/fish_summary_perreplicate_jitter{j}.csv')
     # The fish per-replicate files carry no replicate id and their rows are not in
     # replicate order (parallel workers), so compare per (model, K) counts of
     # valid fits and of each mode count instead of fit by fit.

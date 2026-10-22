@@ -3,7 +3,8 @@ Table 6 -- summary statistics per QPD across the 1000 bootstrap resamples of
 the Johnson SU sample (Section 4.5).
 
 Source: tables/bootstrap_sweep.csv -- the pinned realization (Johnson SU,
-N = 200, seed 200110) resampled 1000 times, all four QPDs, K = 3..13.
+N = 200, seed 200110) resampled 1000 times, K = 3..13. Table 6 reports Metalog,
+QFlex-U, QFlex-A+ and QFlex-TA+; the sweep's QFlex-T+ fits are shown in Figure O6.
 Reported at the paper's standard order set, K = 4, 7, 10, 13.
 
 W1: Equation 6 at the sample points (eval_framework.w1), reported BOTH ways:
@@ -33,7 +34,6 @@ PERSIST: the share of valid bootstrap fits whose mode count matches the
 original realization's (from tables/bootstrap_persist.csv).
 
 writes tables/Table06_bootstrap_summary.csv
-       (QFlex-T+ run: tables/tplus/bootstrap_summary_QFlexTplus.csv, not in the paper)
 """
 import os, sys, json, datetime
 import numpy as np, pandas as pd
@@ -44,12 +44,8 @@ sys.path.insert(0, HERE)
 import figure_style as FS
 
 TAB = os.path.join(HERE, '..', 'tables')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB = TP.table_dir(TAB)
 KS = FS.K_STANDARD
-MODELS = ['Metalog', 'QFlex-U', 'QFlex-A+', 'QFlex-TA+']
-if TP.TPLUS_ONLY:
-    MODELS = [TP.LABEL]
+MODELS = ['Metalog', 'QFlex-U', 'QFlex-A+', 'QFlex-TA+']     # Table 6's QPDs
 from bootstrap_section import SEED, N
 
 
@@ -111,7 +107,7 @@ def main():
                              if (m, K) in persist and persist[(m, K)] == persist[(m, K)] else np.nan),
             ))
     res = pd.DataFrame(rows)
-    dst = os.path.join(TAB, TP.name('Table06_bootstrap_summary', 'bootstrap_summary_QFlexTplus') + '.csv')
+    dst = os.path.join(TAB, 'Table06_bootstrap_summary.csv')
     res.to_csv(dst, index=False)
     print(res.to_string(index=False))
 
@@ -129,7 +125,7 @@ def main():
                                        'as Tables 7, 8 and 10 do (n_no_peak records how many)',
                'iqr': 'RAW, over the dominant (tallest) mode of each fit -- location in the '
                       'realization\'s units, height as a density'},
-              open(os.path.join(TP.log_dir(os.path.join(HERE, '..', 'logs')), 'bootstrap_summary_provenance.json'), 'w'),
+              open(os.path.join(HERE, '..', 'logs', 'bootstrap_summary_provenance.json'), 'w'),
               indent=2)
     print(f'-> {dst}')
 

@@ -46,14 +46,12 @@ import eval_framework as EF
 
 TAB = os.path.join(HERE, '..', 'tables')
 LOG = os.path.join(HERE, '..', 'logs')
-import tplus_mode as TP                 # QPD_TPLUS_ONLY=1: supplementary QFlex-T+ run
-TAB, LOG = TP.table_dir(TAB), TP.log_dir(LOG)
 for d in (TAB, LOG):
     os.makedirs(d, exist_ok=True)
 
 # Log QFlex-U is unconstrained (ConstraintType.NONE), as in mc_tables_rebuild
 # and fish_summary.
-_CT = {'qflex_u': ConstraintType.NONE, 'qflex_ta': ConstraintType.TA, 'qflex_tl': ConstraintType.TL}
+_CT = {'qflex_u': ConstraintType.NONE, 'qflex_ta': ConstraintType.TA}
 
 _X = _P = _EQF = _L = None
 

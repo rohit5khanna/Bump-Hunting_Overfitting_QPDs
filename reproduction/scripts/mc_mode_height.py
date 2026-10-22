@@ -1,7 +1,7 @@
 """
 Mode-height accuracy for the Monte Carlo section: the mode height
-median/true column of Table 4 (N = 200, --n 200) and Table A1 (N = 50, --n 50);
-in the QFlex-T+ run (QPD_TPLUS_ONLY=1) the same column of Table A2.
+median/true column of Table 4 (N = 200, --n 200) and Table A1 (N = 50, --n 50),
+and the same column of Table A2 (QFlex-T+, both N). One run fits all five QPDs.
 
 WHAT THIS MEASURES. Validity, false modality and W1 all say whether a fit
 invents structure or sits close to the sample. None of them says how far the
@@ -54,9 +54,8 @@ for v in ('OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS'):
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from mc_tables_rebuild import (DISTS, KS, MODELS, DIST_PARAMS, P_GRID, N_REPS,
+from mc_tables_rebuild import (DISTS, KS, MODELS, TPLUS, DIST_PARAMS, P_GRID, N_REPS,
                                TAB, draw, fit)
-import tplus_mode as TP
 import eval_framework as EF
 
 
@@ -131,15 +130,14 @@ if __name__ == '__main__':
         out.append(df)
         print(df.to_string(index=False), flush=True)
         print(flush=True)
-    full = pd.concat(out, ignore_index=True)
-    if TP.TPLUS_ONLY:
-        stem = f'TableA2_mode_height_N{a.n}'
-    else:
-        stem = {200: 'Table04_mode_height_N200', 50: 'TableA1_mode_height_N50'}.get(a.n, f'mc_mode_height_N{a.n}')
-    path = os.path.join(TAB, f'{stem}.csv')
-    if os.path.exists(path) and a.dists != 'su,sl,sb':
-        prev = pd.read_csv(path)
-        prev = prev[~prev.Distribution.isin(full.Distribution.unique())]
-        full = pd.concat([prev, full], ignore_index=True)
-    full.to_csv(path, index=False)
-    print(f'Saved -> {path}')
+    allm = pd.concat(out, ignore_index=True)
+    stem4 = {200: 'Table04_mode_height_N200', 50: 'TableA1_mode_height_N50'}.get(a.n, f'mc_mode_height_N{a.n}')
+    for stem, full in ((stem4, allm[allm.Model != TPLUS]),                    # Table 4 / A1
+                       (f'TableA2_mode_height_N{a.n}', allm[allm.Model == TPLUS])):  # Table A2
+        path = os.path.join(TAB, f'{stem}.csv')
+        if os.path.exists(path) and a.dists != 'su,sl,sb':
+            prev = pd.read_csv(path)
+            prev = prev[~prev.Distribution.isin(full.Distribution.unique())]
+            full = pd.concat([prev, full], ignore_index=True)
+        full.to_csv(path, index=False)
+        print(f'Saved -> {path}')

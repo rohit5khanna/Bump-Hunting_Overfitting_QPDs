@@ -18,7 +18,10 @@ prominence_sensitivity_summary.csv (every section).
 
 usage:  python3 prominence_sensitivity.py SECTION --lo 1 --hi 1000 [--procs 4]
 SECTION in: mc_su_50 mc_su_200 mc_sl_50 mc_sl_200 mc_sb_50 mc_sb_200
-            ig_50 ig_200 bimodal bootstrap hydrology geyser fish_0.5 fish_1.0
+            ig_200 bimodal bootstrap hydrology geyser fish_0.5 fish_1.0
+Each section fits the QPDs the paper reports for it: all five (Metalog, QFlex-U,
+QFlex-T+, QFlex-TA+, QFlex-A+) for the Monte Carlo, inverse Gaussian and SU
+bootstrap sections; the section's own models elsewhere.
 Writes partials/<SECTION>_<lo>_<hi>.csv (one row per fit).
 """
 import os
@@ -33,7 +36,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 S = os.path.abspath(os.path.join(HERE, '..', 'scripts'))
 sys.path.insert(0, S); sys.path.insert(0, os.path.join(S, '..', '..', 'code', 'common'))
 import eval_framework as EF
-from qflex.constraints import ConstraintType as CTy
 PART = os.path.join(HERE, 'partials'); os.makedirs(PART, exist_ok=True)
 
 
@@ -70,6 +72,8 @@ def setup(section):
         else:
             import mc_invgauss as IGR
             n = int(section.split('_')[1]); support = 'semi'
+            if n != 200:
+                raise SystemExit('the paper runs the inverse Gaussian at N = 200 only (ig_200)')
             draw = lambda rep: IGR.draw(n, rep)
             setting = f'Inverse Gaussian, N={n}'
         p = EF.plotting_positions(n)
@@ -85,7 +89,7 @@ def setup(section):
 
     if section == 'bimodal':
         import bimodal_mc as BM, bimodal_common as BC
-        specs = list(BC.SPECS) + [('QFlex-T+', 'qflex_tl')]
+        specs = list(BC.SPECS)
 
         def one(rep):
             x = BC.draw(rep, BC.SAMPLE_SIZE); p = np.arange(1, len(x) + 1) / (len(x) + 1)
@@ -101,7 +105,7 @@ def setup(section):
     if section == 'bootstrap':
         import bootstrap_sweep as BS, bootstrap_section as BSec
         BS._init()
-        specs = list(BS.SPECS) + [('QFlex-T+', 'qflex', CTy.TL)]
+        specs = list(BS.SPECS)                    # includes QFlex-T+
 
         def one(rep):
             b = rep - 1                               # sweep uses b = 0..999
@@ -117,7 +121,7 @@ def setup(section):
     if section == 'hydrology':
         import hydrology_sweep as HS, hydrology_common as HC
         HS._init()
-        specs = [('GEV', 'gev', 0)] + list(HS.SPECS) + [('Log QFlex-T+', 'qflex_tl', K) for K in (4, 7, 10)]
+        specs = [('GEV', 'gev', 0)] + list(HS.SPECS)
 
         def one(rep):
             b = rep - 1
@@ -132,7 +136,7 @@ def setup(section):
     if section == 'geyser':
         import geyser_sweep as GS, geyser_common as GC
         GS._init()
-        specs = list(GS.SPECS) + [('Log QFlex-T+', 'qflex_tl')]
+        specs = list(GS.SPECS)
 
         def one(rep):
             b = rep - 1
@@ -149,7 +153,7 @@ def setup(section):
         import fish_summary as FSm, fish_common as FC
         jit = float(section.split('_')[1])
         FSm._init(jit)
-        specs = list(FSm.SPECS) + [('Log QFlex-T+', 'qflex_tl')]
+        specs = list(FSm.SPECS)
 
         def one(rep):
             b = rep - 1

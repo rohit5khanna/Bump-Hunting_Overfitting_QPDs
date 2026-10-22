@@ -1,20 +1,18 @@
 """
-Bootstrap diagnostics (Section 4.5) -- Figures 7 and 8, the QFlex-U and
-QFlex-TA+ versions in the Online Supplement (Figures O5 and O7), and one
-figure that is not in the paper.
+Bootstrap diagnostics (Section 4.5) -- Figures 7 and 8, the QFlex-U, QFlex-T+
+and QFlex-TA+ versions in the Online Supplement (Figures O5, O6 and O7), and
+one figure that is not in the paper.
 
     Figure 7   Metalog mode count and dispersion under bootstrap resampling
                (Johnson SU, N = 200)          -> Figure07_Metalog_bootstrap_modes
     Figure 8   QFlex-A+ mode count and dispersion under bootstrap resampling
                                               -> Figure08_QFlexAplus_bootstrap_modes
     Figure O5  QFlex-U version                -> FigureO5_QFlexU_bootstrap_modes
+    Figure O6  QFlex-T+ version               -> FigureO6_QFlexTplus_bootstrap_modes
     Figure O7  QFlex-TA+ version              -> FigureO7_QFlexTAplus_bootstrap_modes
     (not in the paper) valid unimodal Metalog and QFlex-A+ fits from the
                bootstrap samples at K = 10 with shifted modes
                -> figures/other/bootstrap_valid_unimodal_shifted_modes
-
-(Figure O6, the QFlex-T+ version, is made by bootstrap_tplus_figure.py with
-the same dispersion_figure function.)
 
 All come from tables/bootstrap_sweep.csv -- the pinned realization
 (Johnson SU, N=200, seed 200110) and its 1000 resamples.
@@ -67,6 +65,7 @@ HT_LIM  = (0.25, 2.05)
 CT = {'Metalog': None, 'QFlex-U': ConstraintType.NONE,
       'QFlex-A+': ConstraintType.A, 'QFlex-TA+': ConstraintType.TA}
 COL = dict(FS.QPD)
+COL['QFlex-T+'] = '#e377c2'          # pink: not one of the four reserved QPD colours
 # The scatter carries the model's reserved colour; the histogram bars go
 # neutral grey with only the original fit's bar highlighted. Bars and scatter
 # stay distinguishable by form, not by hue.
@@ -167,6 +166,7 @@ def main():
     for label, out, num in (('Metalog', 'Figure07_Metalog_bootstrap_modes', '7'),
                             ('QFlex-A+', 'Figure08_QFlexAplus_bootstrap_modes', '8'),
                             ('QFlex-U', 'FigureO5_QFlexU_bootstrap_modes', 'O5'),
+                            ('QFlex-T+', 'FigureO6_QFlexTplus_bootstrap_modes', 'O6'),
                             ('QFlex-TA+', 'FigureO7_QFlexTAplus_bootstrap_modes', 'O7')):
         dispersion_figure(df, orig, persist, label, tm, out, num)
 

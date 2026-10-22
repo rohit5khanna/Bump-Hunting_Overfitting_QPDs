@@ -4,9 +4,8 @@ by model (including QFlex-T+) and Johnson distribution, N = 200, K = 10.
     valid-and-unimodal % = Validity % x (1 - False Modality %)
                          = 100 * #(valid on G and n_peaks <= 1) / #replicates
 
-Computed directly from the per-replicate MC files (1000 replicates per cell):
-    tables/mc_perrep_<d>_n<N>.csv        Metalog, QFlex-U, QFlex-TA+, QFlex-A+
-    tables/tplus/mc_perrep_<d>_n<N>.csv  QFlex-T+
+Computed directly from the per-replicate MC files (1000 replicates per cell),
+tables/mc_perrep_<d>_n<N>.csv, written by mc_tables_rebuild.py.
 A fit with no interior peak counts as unimodal (framework rule).
 
 Style: figure_style.rcparams(). Bars are coloured by DISTRIBUTION, so they use
@@ -15,10 +14,10 @@ colours stay reserved for models. Each distribution also gets a hatch
 (SU solid, SL diagonal, SB dotted) so the figure reads in grayscale print.
 
 Usage: python3 mc_valid_unimodal_figure.py [--N 200] [--K 10]
-Writes figures/Figure05_valid_unimodal_N200_K10.{png,pdf} for the defaults
-       (any other N, K: figures/other/mc_valid_unimodal_n<N>_K<K>_withTplus.*,
+Writes figures/Figure05_valid_unimodal_N200_K10.{png,pdf} and
+       tables/Figure05_valid_unimodal_N200_K10_paneldata.csv for the defaults
+       (any other N, K: figures/other/ and tables/mc_valid_unimodal_n<N>_K<K>.csv,
        not in the paper)
-       tables/tplus/mc_valid_unimodal_n<N>_K<K>_withTplus.csv
 """
 import os, argparse
 import numpy as np, pandas as pd
@@ -41,8 +40,7 @@ a = ap.parse_args()
 
 rows = []
 for d, dname in DISTS:
-    per = pd.concat([pd.read_csv(os.path.join(TAB, f'mc_perrep_{d}_n{a.N}.csv')),
-                     pd.read_csv(os.path.join(TAB, 'tplus', f'mc_perrep_{d}_n{a.N}.csv'))])
+    per = pd.read_csv(os.path.join(TAB, f'mc_perrep_{d}_n{a.N}.csv'))
     per = per[per.K == a.K]
     for m in MODELS:
         s = per[per.Model == m]
@@ -80,11 +78,11 @@ ax.grid(axis='x', visible=False)
 ax.legend(loc='upper left', ncol=3, handlelength=2.2, handleheight=1.2)
 fig.tight_layout()
 os.makedirs(FIG, exist_ok=True)
-name = f'mc_valid_unimodal_n{a.N}_K{a.K}_withTplus'
-fpath = FS.figure_path('Figure05_valid_unimodal_N200_K10' if (a.N, a.K) == (200, 10) else name)
+paper = (a.N, a.K) == (200, 10)
+name = 'Figure05_valid_unimodal_N200_K10' if paper else f'mc_valid_unimodal_n{a.N}_K{a.K}'
+fpath = FS.figure_path(name)
 fig.savefig(fpath + '.png', dpi=300, bbox_inches='tight')
 fig.savefig(fpath + '.pdf', bbox_inches='tight')
-os.makedirs(os.path.join(TAB, 'tplus'), exist_ok=True)
-t.round(2).to_csv(os.path.join(TAB, 'tplus', name + '.csv'), index=False)
+t.round(2).to_csv(os.path.join(TAB, name + ('_paneldata' if paper else '') + '.csv'), index=False)
 print(t[['Distribution', 'Model', 'Validity_pct', 'FalseModality_pct', 'ValidUnimodal_pct']].round(1).to_string(index=False))
 print('saved', name)
