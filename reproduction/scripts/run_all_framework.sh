@@ -14,7 +14,6 @@ step() { echo "=== $(date +%H:%M:%S)  $*" | tee -a "$LOG"; "$PY" "$@" >> "$LOG" 
 step ../code/common/eval_framework.py
 # Monte Carlo (Section 4)
 step scripts/mc_tables_rebuild.py --all --procs 4    # Tables 4, A1 (validity, false modality, W1)
-step scripts/mc_johnson_figures.py --all             # four-model versions without QFlex-T+ (not in the paper)
 step scripts/mc_mode_height.py --n 200               # Table 4 mode height column
 step scripts/mc_mode_height.py --n 50                # Table A1 mode height column
 step scripts/mc_sb_pdf_fit_triptych.py               # Figure 2
@@ -33,20 +32,15 @@ step scripts/hydrology_tables.py                     # Table 8
 step scripts/hydrology_figures.py                    # Figures 10-14
 # Fish (Section 5.2)
 step scripts/fish_summary.py --jitter 0.5            # Table 10
-step scripts/fish_summary.py --jitter 1.0            # not in the paper
+step scripts/fish_summary.py --jitter 1.0            # not in the paper; input to the prominence check (check_1pct.py)
 step scripts/fish_sample_size_sweep.py               # Table 11
 step scripts/fish_histogram_figure.py                # Figure 15
 step scripts/fish_eqf_ci_figure.py                   # Figure 16
-step scripts/fish_bimodal_vs_jitter.py --procs 4     # not in the paper
-step scripts/fish_mode_scatter.py --procs 4          # not in the paper
-step scripts/fish_pdf_jitter_panels.py               # not in the paper
 step scripts/fish_pdf_order_panels.py                # Figure 17
 # Geyser (Section 5.3)
 step scripts/geyser_sweep.py --procs 4
 step scripts/geyser_tables.py                        # Table 13
 step scripts/geyser_mode_iqr.py                      # Table 13 (primary/secondary mode IQRs)
-step scripts/geyser_median_fit_figure.py             # not in the paper
 step scripts/geyser_latent_fit_figure.py             # Figure 19
-step scripts/geyser_latent_fit_figure.py --raw       # not in the paper
-step scripts/geyser_latent_stability.py              # not in the paper
+step scripts/geyser_latent_stability.py              # not in the paper; supports Figure 19 (one jitter realization suffices)
 echo "ALL DONE  $(date +%H:%M:%S)" | tee -a "$LOG"

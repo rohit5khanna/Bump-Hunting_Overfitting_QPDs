@@ -39,5 +39,5 @@ notebook's dependency header at the top of `app.py` explicitly lists the
 third-party packages (`numpy`, `pandas`, `plotly`, `scipy`, `openpyxl`)
 since marimo's WASM export only auto-resolves what it can detect from
 imports, and a couple of these (`plotly` in particular) aren't part of
-Pyodide's default bundle. `public/` holds the three empirical datasets;
+Pyodide's default bundle. `public/` holds the paper's three empirical datasets and a stock/bond/bill returns dataset used by an extra exploratory section that is not in the paper;
 marimo copies this folder into the deployed site automatically.

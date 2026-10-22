@@ -146,16 +146,19 @@ def main():
     df.to_csv(out, index=False)
     print(f'\nSaved -> {out}  ({len(df):,} rows)', flush=True)
 
-    M = np.vstack(bands)
-    band = pd.DataFrame({'p': P_GRID,
-                         'eqf_observed': _EQF if _EQF is not None else np.nan,
-                         'q025': np.percentile(M, 2.5, axis=0),
-                         'q975': np.percentile(M, 97.5, axis=0)})
-    x, p = load_hydrology()
-    band['eqf_observed'] = empirical_qf(x, p)
-    band.to_csv(os.path.join(TAB, 'Figure12_hydrology_EQF_bootstrap_interval_paneldata.csv'), index=False)
-    print(f'EQF band -> tables/Figure12_hydrology_EQF_bootstrap_interval_paneldata.csv '
-          f'(from the same {a.n_boot} replicates)', flush=True)
+    # The EQF band depends only on the resamples, so the main run writes it and
+    # the QFlex-T+ run (QPD_TPLUS_ONLY=1) skips it.
+    if not TP.TPLUS_ONLY:
+        M = np.vstack(bands)
+        band = pd.DataFrame({'p': P_GRID,
+                             'eqf_observed': _EQF if _EQF is not None else np.nan,
+                             'q025': np.percentile(M, 2.5, axis=0),
+                             'q975': np.percentile(M, 97.5, axis=0)})
+        x, p = load_hydrology()
+        band['eqf_observed'] = empirical_qf(x, p)
+        band.to_csv(os.path.join(TAB, 'Figure12_hydrology_EQF_bootstrap_interval_paneldata.csv'), index=False)
+        print(f'EQF band -> tables/Figure12_hydrology_EQF_bootstrap_interval_paneldata.csv '
+              f'(from the same {a.n_boot} replicates)', flush=True)
 
     print('\n% feasible')
     print(df.groupby(['model', 'K'])['feasible'].mean().mul(100).round(1)

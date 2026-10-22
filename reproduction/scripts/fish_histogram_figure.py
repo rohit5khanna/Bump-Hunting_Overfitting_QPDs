@@ -3,8 +3,7 @@ Fish -- paper Figure 15: histogram of recorded weights (0.5-lb bins) with a
 10-term Log Metalog overlaid for reference.
 
 The overlay is the K=10 Log Metalog fit to the RAW recorded weights, with no
-jitter -- the same reference curve fish_mode_scatter.py (not in the paper)
-marks its secondary peak and antimode from. Fitting the raw data needs no RNG,
+jitter. Fitting the raw data needs no RNG,
 so this figure is fully deterministic. The raw-data fit is feasible and
 bimodal (modes near 4.86 and 10.05 lb).
 

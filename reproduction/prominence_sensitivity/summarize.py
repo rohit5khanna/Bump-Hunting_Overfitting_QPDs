@@ -3,7 +3,7 @@
 Writes
   TableO1_prominence_JohnsonSU.csv     Table O1 -- false modality (%) for Johnson SU,
                                        N = 50 and 200, K = 7, 10, 13, at 0.5%, 1%, 2%
-  prominence_sensitivity.xlsx          workbook covering every section, all thresholds
+  excel/Prominence_Sensitivity.xlsx   workbook covering every section, all thresholds
   prominence_sensitivity_summary.csv   the workbook's per-section tables in one file
 """
 import os, glob, numpy as np, pandas as pd
@@ -67,7 +67,7 @@ notes = ['Sensitivity of mode identification to the relative-prominence threshol
  'Settings (as in the paper): MC N = 50 and 200, 1000 replicates, K = 4/7/10/13; inverse Gaussian same; bimodal mixture N = 200,',
  '1000 replicates, K = 4..14; SU bootstrap 1000 resamples of the N = 200 realization; river gauge, fish (jitter 0.5 and 1.0 lb) and',
  'geyser (jitter 0.5 min): 1000 bootstrap replicates each. QFlex-T+ is included everywhere (supplementary in the paper).',
- 'Source: supplement/prominence_sensitivity/ (prominence_sensitivity.py, summarize.py, partials/).']
+ 'Source: reproduction/prominence_sensitivity/ (prominence_sensitivity.py, summarize.py, partials/).']
 for i, t in enumerate(notes, 1):
     ws0.cell(i, 1, t).font = F(bold=(i == 1), size=13 if i == 1 else 10)
 ws0.column_dimensions['A'].width = 140
@@ -129,7 +129,7 @@ for name, t in summ:
         r += 1
 for j, w in enumerate([16, 34, 15, 5, 8, 9, 11, 9, 9, 12], 1): ws.column_dimensions[get_column_letter(j)].width = w
 ws.freeze_panes = 'F4'
-out = os.path.join(HERE, 'prominence_sensitivity.xlsx'); wb.save(out)
+out = os.path.abspath(os.path.join(HERE, '..', '..', 'excel', 'Prominence_Sensitivity.xlsx')); wb.save(out)
 allt = pd.concat([t.assign(section=n) for n, t in summ]); allt.to_csv(os.path.join(HERE, 'prominence_sensitivity_summary.csv'), index=False)
 
 # Online Supplement Table O1 (Section O1): false modality (%) for Johnson SU,

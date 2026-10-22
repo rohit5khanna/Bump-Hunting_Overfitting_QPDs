@@ -13,7 +13,7 @@ n_peaks(t) = #{r >= t}, n_modes = max(1, .), so one fit serves all thresholds
 exactly (checked by check_1pct.py).
 
 summarize.py turns the partials into Table O1 (TableO1_prominence_JohnsonSU.csv,
-Johnson SU only), the workbook prominence_sensitivity.xlsx and
+Johnson SU only), the workbook excel/Prominence_Sensitivity.xlsx and
 prominence_sensitivity_summary.csv (every section).
 
 usage:  python3 prominence_sensitivity.py SECTION --lo 1 --hi 1000 [--procs 4]
@@ -30,7 +30,7 @@ import numpy as np, pandas as pd
 from scipy.signal import find_peaks
 warnings.filterwarnings('ignore')
 HERE = os.path.dirname(os.path.abspath(__file__))
-S = os.path.abspath(os.path.join(HERE, '..', '..', 'reproduction', 'scripts'))
+S = os.path.abspath(os.path.join(HERE, '..', 'scripts'))
 sys.path.insert(0, S); sys.path.insert(0, os.path.join(S, '..', '..', 'code', 'common'))
 import eval_framework as EF
 from qflex.constraints import ConstraintType as CTy

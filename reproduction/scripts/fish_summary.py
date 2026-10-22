@@ -13,9 +13,7 @@ paper's 0.5 lb jitter, the same 1000 draws Table 9 (the 0.5 lb column), Table
 11 (fish_sample_size_sweep.py) and the Figure 16 band use -- so these
 results describe the same samples.
 
-Orders are the paper's standard set, K = 4, 7, 10, 13. fish_bimodal_vs_jitter.py
-and fish_mode_scatter.py (not in the paper) use their own 9/10/11 and 10
-windows, because the second mode appears there.
+Orders are the paper's standard set, K = 4, 7, 10, 13.
 
 W1 is Equation 6 at the sample points (eval_framework.w1), stored BOTH ways:
 w1_own vs the jittered resample each fit was made to, w1_orig vs the ORIGINAL
@@ -89,10 +87,7 @@ def _init(jitter=None):
 def _rank_modes(locs, hgts):
     """(primary_loc, primary_height, secondary_loc, secondary_height).
 
-    PRIMARY is the tallest peak of the fit, SECONDARY the next tallest -- the
-    same rule fish_mode_scatter.py uses (there the secondary is the lower-height
-    peak of a two-mode fit; ranking by height generalises it to fits with more
-    than two).
+    PRIMARY is the tallest peak of the fit, SECONDARY the next tallest.
     A fit with one mode has no secondary and contributes NaN, so the secondary
     columns are summarised over the multimodal fits only.
     """
@@ -194,8 +189,8 @@ def main():
                'w1_main_reference': EF.BOOTSTRAP_W1_REFERENCE,
                'unimodal_convention': 'n_modes <= 1, so no-peak fits count as unimodal '
                                       '(same convention as Tables 7 and 8)',
-               'mode_ranking': 'primary = tallest peak; secondary = next tallest '
-                               '(the rule fish_mode_scatter.py uses). Secondary columns are '
+               'mode_ranking': 'primary = tallest peak; secondary = next tallest. '
+                               'Secondary columns are '
                                'summarised over multimodal fits only; n_secondary '
                                'gives that denominator.',
                'mode_iqr_units': 'location lb, height 1/lb -- raw, not normalised',

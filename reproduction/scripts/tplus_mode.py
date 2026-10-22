@@ -12,8 +12,9 @@ logs/tplus/, so the four-model outputs are never overwritten. Run it with
 scripts/run_tplus_supplement.sh. In the paper this run produces Table A2, the
 QFlex-T+ lines of Figures 3, 4 and O1-O4 (mc_johnson_figures.py, which also
 writes those figures in this run) and Figure O6 (bootstrap_tplus_figure.py);
-its other outputs (bimodal, hydrology, fish, geyser, bootstrap summary with
-QFlex-T+) are not in the paper. An environment variable (not a module
+its bimodal, hydrology, fish and geyser sweeps are not in the paper but are
+the QFlex-T+ half of the reference that the prominence check
+(prominence_sensitivity/check_1pct.py) compares against. An environment variable (not a module
 global) is used because worker processes on macOS start with 'spawn' and
 re-import the module; they inherit the environment.
 """

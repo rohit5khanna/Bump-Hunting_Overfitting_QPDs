@@ -1,5 +1,0 @@
-Model,n_total,n_valid,ValidFits_pct,ModeLocation_IQR_ft,ModeHeight_IQR_perft,MedianW1_Eq6,MedianW1_unnormalized_ft,MedianW1_own_Eq6,MedianW1_orig_Eq6,MedianW1_own_ft,MedianW1_orig_ft,n_flat_no_peak_detected,modes_1_pct_strict,modes_1_pct,modes_2_pct,modes_gt2_pct
-Log QFlex-T+-4,1000,1000,100.0,0.424,0.0473,0.03569,0.1319,0.03569,0.04737,0.1319,0.1758,47,95.3,100.0,0.0,0.0
-Log QFlex-T+-7,1000,981,98.1,0.2842,0.1558,0.0291,0.1077,0.0291,0.04809,0.1077,0.1785,0,84.8,84.8,14.1,1.1
-Log QFlex-T+-10,1000,392,39.2,0.2205,0.2592,0.02297,0.0835,0.02297,0.04488,0.0835,0.1665,0,26.5,26.5,41.3,32.1
-Log QFlex-T+-13,1000,81,8.1,0.2486,0.4271,0.01889,0.0683,0.01889,0.04515,0.0683,0.1676,0,1.2,1.2,12.3,86.4
